@@ -7,14 +7,19 @@ public:
             return vec;
         }
         vector<int>ans=getRow(rowIndex-1);
-        vector<int>pop;
-        pop.push_back(1);
-        for(int i=1;i<ans.size();i++){
-            pop.push_back(ans[i]+ans[i-1]);
+//         vector<int>pop;
+//         pop.push_back(1);
+//         for(int i=1;i<ans.size();i++){
+//             pop.push_back(ans[i]+ans[i-1]);
             
+//         }
+//         pop.push_back(1);
+//         return pop;
+        for(int i=0;i<ans.size()-1;i++){
+            ans[i]=ans[i]+ans[i+1];
         }
-        pop.push_back(1);
-        return pop;
+        ans.insert(ans.begin(),1);
+        return ans;
         
     }
 };
