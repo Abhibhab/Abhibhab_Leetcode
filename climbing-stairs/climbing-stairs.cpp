@@ -8,13 +8,13 @@ public:
         }
         if(ans[n]!=-1){
             return ans[n];
-        }else{
+        }
         int small=helper(n-1,ans);
         int small2=helper(n-2,ans);
         // int small3=climbStairs(n-3);
        ans[n]=small+small2;
             return ans[n];
-        }
+        
         
     }
     int climbStairs(int n) {
