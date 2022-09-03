@@ -22,24 +22,26 @@ public:
         // vector<vector<int>>memo(matrix.size(),vector<int>(matrix.size(),-1));
         vector<vector<int>>dp(matrix.size(),vector<int>(matrix.size(),0));
         int size=matrix.size();
-        for(int j=0;j<size;j++)dp[0][j]=matrix[0][j];
+        vector<int>prev(size),curr(size);
+        for(int j=0;j<size;j++)prev[j]=matrix[0][j];
         for(int i=1;i<size;i++){
             for(int j=0;j<size;j++){
                 int option1=1e9,option2=1e9,option3=1e9;
-                option1=matrix[i][j]+dp[i-1][j];//up;
+                option1=matrix[i][j]+prev[j];//up;
                 if(j>0){
-                    option2=matrix[i][j]+dp[i-1][j-1];
+                    option2=matrix[i][j]+prev[j-1];
                 }
                 if(j<size-1){
-                    option3=matrix[i][j]+dp[i-1][j+1];
+                    option3=matrix[i][j]+prev[j+1];
                     
                 }
-                dp[i][j]=min(option1,min(option2,option3));
+                curr[j]=min(option1,min(option2,option3));
                 
             }
+           prev=curr;
         }
     for(int j=0;j<size;j++){
-        mini=min(mini,dp[size-1][j]);
+        mini=min(mini,prev[j]);
     }
         return mini;
 
