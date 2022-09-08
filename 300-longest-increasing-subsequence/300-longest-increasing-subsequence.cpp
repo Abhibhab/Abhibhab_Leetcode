@@ -15,7 +15,23 @@ public:
                 }
             }
         }
-        return ans;
+//         return ans;
+        
+        int length=1;
+        vector<int>bi;
+        bi.push_back(nums[0]);
+        for(int i=1;i<nums.size();i++){
+            if(bi.back()<nums[i]){
+                bi.push_back(nums[i]);
+                length++;
+                
+            }else{
+                int index=lower_bound(bi.begin(),bi.end(),nums[i])-bi.begin();
+                bi[index]=nums[i];
+                
+            }
+        }
+        return length;
         
 
         
