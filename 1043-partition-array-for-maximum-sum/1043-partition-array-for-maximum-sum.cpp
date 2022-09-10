@@ -1,7 +1,7 @@
 class Solution {
 public:
     int maxSumAfterPartitioning(vector<int>& arr, int k) {
-        vector<int>vec(arr.size()+1,-1);
+        vector<int>vec(arr.size(),-1);
         return helper(0,arr,k,vec);
       
         
