@@ -20,7 +20,7 @@ public:
         int n=jD.size();
         if(n<d)      
             return -1;
-        vector<vector<int>>dp(n+1,vector<int>(d+1,-1));
+        vector<vector<int>>dp(n,vector<int>(d+1,-1));
         return helper(0,d,jD,dp);
         
     }
