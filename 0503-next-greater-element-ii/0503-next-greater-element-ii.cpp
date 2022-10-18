@@ -12,7 +12,7 @@ public:
                 st.pop();
                 
             }
-            if(i<size) st.push(i);
+            st.push(i%size);
         }
         return ans;
 //         for(int i=size-1;i>=0;i--){
