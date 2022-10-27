@@ -56,7 +56,7 @@ vector<long long> printFirstNegativeInteger(long long int arr[],
             }else{
                 ans.push_back(list.front());
             }
-             if(arr[i]<0){
+             if(arr[i]==list.front()){
                 list.pop_front();
             }
             // showlist(list);
