@@ -6,12 +6,13 @@ using namespace std;
 class Solution {
   public:
     // Function to detect cycle in an undirected graph.
-    bool solver(int index,int parent,vector<int>adj[],vector<int>&vis){
+    bool solver(int index,int parent,vector<int>adj[],vector<int>&vis,vector<int>&par){
         vis[index]=1;
-        // par[index]=parent;
+        par[index]=parent;
         for(auto it:adj[index]){
             if(!vis[it]){
-                if(solver(it,index,adj,vis)==true)return true;
+                // par[it]=index;
+                if(solver(it,index,adj,vis,par)==true)return true;
             }else{
                 if(it!=parent)return true;
             }
@@ -20,11 +21,11 @@ class Solution {
     }
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        // vector<int>par(V,-1);
+        vector<int>par(V,-1);
         vector<int>vis(V,0);
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(solver(i,-1,adj,vis)==true)return true;
+                if(solver(i,-1,adj,vis,par)==true)return true;
             }
         }
         return false;
