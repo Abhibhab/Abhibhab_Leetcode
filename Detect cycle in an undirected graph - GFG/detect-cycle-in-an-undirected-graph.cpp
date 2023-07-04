@@ -5,40 +5,29 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    bool solver(int index,vector<int>adj[],vector<int>&vis){
-        queue<pair<int,int>>que;
-        que.push({index,-1});
+    // Function to detect cycle in an undirected graph.
+    bool solver(int index,int parent,vector<int>adj[],vector<int>&vis){
         vis[index]=1;
-        while(!que.empty()){
-            int ele=que.front().first;
-            int parent=que.front().second;
-        
-            que.pop();
-            for(auto it:adj[ele]){
-                if(!vis[it]){
-                    vis[it]=1;
-                    que.push({it,ele});
-                }else{
-                    if(it!=parent)return true;
-                }
+        // par[index]=parent;
+        for(auto it:adj[index]){
+            if(!vis[it]){
+                if(solver(it,index,adj,vis)==true)return true;
+            }else{
+                if(it!=parent)return true;
             }
         }
         return false;
-        
-        
     }
-    // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
         // Code here
-        // queue<pair<int,int>>que;
+        // vector<int>par(V,-1);
         vector<int>vis(V,0);
         for(int i=0;i<V;i++){
             if(!vis[i]){
-                if(solver(i,adj,vis)==true)return true;
+                if(solver(i,-1,adj,vis)==true)return true;
             }
         }
         return false;
-        
     }
 };
 
