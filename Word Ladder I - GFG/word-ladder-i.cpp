@@ -1,0 +1,52 @@
+//{ Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+class Solution {
+public:
+    int wordLadderLength(string startWord, string targetWord, vector<string>& wordList) {
+        // Code here
+        queue<pair<string,int>>que;
+        set<string>st(wordList.begin(),wordList.end());
+        que.push({startWord,1});
+        st.erase(startWord);
+        while(que.size()){
+            string word=que.front().first;
+            int level=que.front().second;
+            que.pop();
+            if(word==targetWord)return level;
+            for(int i=0;i<word.size();i++){
+                char original=word[i];
+                for(char ch='a';ch<='z';ch++){
+                    word[i]=ch;
+                    if(st.find(word)!=st.end()){
+                        que.push({word,level+1});
+                        st.erase(word);
+                    }
+                }
+                word[i]=original;
+            }
+        }
+        return 0;
+    }
+};
+
+//{ Driver Code Starts.
+int main(){
+	int tc;
+	cin >> tc;
+	while(tc--){
+		int n;
+		cin >> n;
+		vector<string>wordList(n);
+		for(int i = 0; i < n; i++)cin >> wordList[i];
+		string startWord, targetWord;
+		cin >> startWord >> targetWord;
+		Solution obj;
+		int ans = obj.wordLadderLength(startWord, targetWord, wordList);
+		cout << ans << "\n";
+	}
+	return 0;
+}
+// } Driver Code Ends
