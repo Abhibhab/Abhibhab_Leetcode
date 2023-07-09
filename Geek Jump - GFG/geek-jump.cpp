@@ -15,10 +15,20 @@ class Solution {
       if(ind>=2)option2=helper(ind-2,heights,dp)+abs(heights[ind]-heights[ind-2]);
       return dp[ind]=min(option1,option2);
   }
-    int minimumEnergy(vector<int>& height, int n) {
-        // Code here
-        vector<int>dp(n,-1);
-        return helper(n-1,height,dp);
+    int minimumEnergy(vector<int>& heights, int n) {
+        // MEMO
+        // vector<int>dp(n,-1);
+        // return helper(n-1,height,dp);
+        //TABULAR
+        vector<int>dp(n,0);
+        for(int ind=1;ind<n;ind++){
+        int option1=dp[ind-1]+abs(heights[ind]-heights[ind-1]);
+        int option2=INT_MAX;
+        if(ind>=2)option2=dp[ind-2]+abs(heights[ind]-heights[ind-2]);
+       dp[ind]=min(option1,option2);
+            
+        }
+        return dp[n-1];
     }
 };
 
