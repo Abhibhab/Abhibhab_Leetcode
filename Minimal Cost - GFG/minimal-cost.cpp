@@ -18,10 +18,24 @@ class Solution {
         }
         return dp[ind]= ans;
     }
-    int minimizeCost(vector<int>& height, int n, int k) {
+    int minimizeCost(vector<int>& heights, int n, int k) {
         // Code here
-        vector<int>dp(n,-1);
-        return helper(n-1,k,height,dp);
+        // vector<int>dp(n,-1);
+        // return helper(n-1,k,height,dp);
+        //TABULAR
+        vector<int>dp(n,0);
+        for(int ind=1;ind<n;ind++){
+        int ans=INT_MAX;
+        for(int i=1;i<=k;i++){
+            if(ind-i>=0){
+                ans=min(ans,dp[ind-i]+abs(heights[ind]-heights[ind-i]));
+            }
+            
+        }
+       dp[ind]= ans;
+            
+        }
+        return dp[n-1];
     }
 };
 
