@@ -20,15 +20,28 @@ class Solution {
         // vector<int>dp(n,-1);
         // return helper(n-1,height,dp);
         //TABULAR
-        vector<int>dp(n,0);
-        for(int ind=1;ind<n;ind++){
-        int option1=dp[ind-1]+abs(heights[ind]-heights[ind-1]);
-        int option2=INT_MAX;
-        if(ind>=2)option2=dp[ind-2]+abs(heights[ind]-heights[ind-2]);
-       dp[ind]=min(option1,option2);
+    //     vector<int>dp(n,0);
+    //     for(int ind=1;ind<n;ind++){
+    //     int option1=dp[ind-1]+abs(heights[ind]-heights[ind-1]);
+    //     int option2=INT_MAX;
+    //     if(ind>=2)option2=dp[ind-2]+abs(heights[ind]-heights[ind-2]);
+    //   dp[ind]=min(option1,option2);
             
-        }
-        return dp[n-1];
+    //     }
+    //     return dp[n-1];
+    //TWO VARIABLES
+    int prev=0;
+    int prev2=0;
+     for(int ind=1;ind<n;ind++){
+        int option1=prev+abs(heights[ind]-heights[ind-1]);
+        int option2=INT_MAX;
+        if(ind>=2)option2=prev2+abs(heights[ind]-heights[ind-2]);
+      int curr=min(option1,option2);
+      prev2=prev;
+      prev=curr;
+     }
+     return prev;
+    
     }
 };
 
